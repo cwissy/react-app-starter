@@ -16,11 +16,13 @@
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
-    "precommit": "lint-staged",
+    "precommit": "npm run test-no-watch && lint-staged",
+    "prepush": "npm run test-no-watch",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "build": "npm run build-css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "test-no-watch": "CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "lint-staged": {
